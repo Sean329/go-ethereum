@@ -31,7 +31,7 @@ func importKs() {
     password := "YOUR PASSWORD HERE"
     newPassword := password // Or you can use a new one
     account, err := ks.Import(jsonBytes, password, newPassword)
-    if err != keystore.ErrAccountAlreadyExists {
+    if err != nil && err != keystore.ErrAccountAlreadyExists {
         log.Fatal(err)
     }
     fmt.Println(account.Address.Hex()) // 0x20F8D42FB0F667F2E53930fed426f225752453b3
