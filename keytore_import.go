@@ -17,7 +17,7 @@ import (
 //         log.Fatal(err)
 //     }
 
-//     fmt.Println(account.Address.Hex()) // 0x9580c87cfCE8497E215511A24513880Ca47ec694
+//     fmt.Println(account.Address.Hex()) 
 // }
 
 func importKs() {
@@ -34,8 +34,12 @@ func importKs() {
     if err != nil && err != keystore.ErrAccountAlreadyExists {
         log.Fatal(err)
     }
-    fmt.Println(account.Address.Hex()) // 0x20F8D42FB0F667F2E53930fed426f225752453b3
+    fmt.Println(account.Address.Hex()) 
 
+    /*
+    @dev code will not write to the same dir where the imported file sits, so no need to delete the old one. 
+        Unless it's the case where you use a new password and want to remove the one encrypted with the old password.
+    */
     // if err := os.Remove(file); err != nil {
     //     log.Fatal(err)
     // }

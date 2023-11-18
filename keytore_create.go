@@ -17,7 +17,7 @@ func createKs() {
         log.Fatal(err)
     }
 
-    fmt.Println(account.Address.Hex()) // 0x9580c87cfCE8497E215511A24513880Ca47ec694
+    fmt.Println(account.Address.Hex()) 
 }
 
 // func importKs() {
@@ -33,7 +33,7 @@ func createKs() {
 //     if err != nil {
 //         log.Fatal(err)
 //     }
-//     fmt.Println(account.Address.Hex()) // 0x20F8D42FB0F667F2E53930fed426f225752453b3
+//     fmt.Println(account.Address.Hex()) 
 
 //     if err := os.Remove(file); err != nil {
 //         log.Fatal(err)
