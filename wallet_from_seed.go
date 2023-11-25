@@ -22,18 +22,18 @@ func main() {
 	}
 
 	path := hdwallet.MustParseDerivationPath("m/44'/60'/0'/0/0")
-	account, err := wallet.Derive(path, false)
+	account0, err := wallet.Derive(path, false)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(account.Address.Hex()) // 0x60742b4330562fbA2b0914d901A905Ac793bFdC3
+	fmt.Println(account0.Address.Hex()) // 0x60742b4330562fbA2b0914d901A905Ac793bFdC3
 
 	path = hdwallet.MustParseDerivationPath("m/44'/60'/0'/0/1")
-	account, err = wallet.Derive(path, false)
+	account1, err := wallet.Derive(path, false)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(account.Address.Hex()) // 0xebee8a7d056600b4eAE4717e74Aaa9890e6692c7
+	fmt.Println(account1.Address.Hex()) // 0xebee8a7d056600b4eAE4717e74Aaa9890e6692c7
 }
