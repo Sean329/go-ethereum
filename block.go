@@ -4,7 +4,6 @@ import (
     "context"
     "fmt"
     "log"
-    // "math/big"
 	"os"
 
     "github.com/ethereum/go-ethereum/ethclient"
