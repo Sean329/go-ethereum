@@ -37,13 +37,15 @@ func main() {
     }
 
     for _, tx := range block.Transactions() {
-        fmt.Println(tx.Hash().Hex())        
-        fmt.Println(tx.Value().String())    
-        fmt.Println(tx.Gas())               
-        fmt.Println(tx.GasPrice().Uint64()) 
-        fmt.Println(tx.Nonce())             
-        fmt.Println(tx.Data())              
-        fmt.Println(tx.To().Hex())          
+        fmt.Println(tx.Hash().Hex())  
+		
+		// Too much printing as it is printing the entire blcok -- commenting out some
+        // fmt.Println(tx.Value().String())    
+        // fmt.Println(tx.Gas())               
+        // fmt.Println(tx.GasPrice().Uint64()) 
+        // fmt.Println(tx.Nonce())             
+        // fmt.Println(tx.Data())              
+        // fmt.Println(tx.To().Hex())          
 
         chainID, err := client.NetworkID(context.Background())
         if err != nil {
