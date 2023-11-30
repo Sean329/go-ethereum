@@ -72,5 +72,5 @@ func main() {
         log.Fatal(err)
     }
 
-    fmt.Printf("tx sent: %s", signedTx.Hash().Hex())
+    fmt.Printf("tx sent: %s \n", signedTx.Hash().Hex())
 }
