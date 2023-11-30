@@ -49,7 +49,10 @@ func main() {
 	value := big.NewInt(0)
 	toAddress := common.HexToAddress("0x0")
 	gasLimit := uint64(21000)
-	gasPrice := big.NewInt(50000000)
+	gasPrice, err := client.SuggestGasPrice(context.Background())
+    if err != nil {
+        log.Fatal(err)
+    }
 	chainID, err := client.NetworkID(context.Background())
 		if err != nil {
   			log.Fatal(err)
