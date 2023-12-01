@@ -8,9 +8,12 @@ import (
     "math/big"
 	"os"
 
+    "github.com/ethereum/go-ethereum"
     "github.com/ethereum/go-ethereum/common"
+    "github.com/ethereum/go-ethereum/common/hexutil"
     "github.com/ethereum/go-ethereum/core/types"
     "github.com/ethereum/go-ethereum/crypto"
+    "github.com/ethereum/go-ethereum/crypto/sha3"
     "github.com/ethereum/go-ethereum/ethclient"
 	"github.com/joho/godotenv"
 )
@@ -46,15 +49,36 @@ func main() {
         log.Fatal(err)
     }
 
+	toAddress := common.HexToAddress("0xeF145f88397f2E5aa64b56Ec49e67e7Ed2644FC8")
+	tokenAddress := common.HexToAddress("0x087aF2906D4cFa2E0c01910854815aA945F9B757")
 	value := big.NewInt(0) // in wei (1 eth)
-    gasLimit := uint64(21000) // in units
+    
     gasPrice, err := client.SuggestGasPrice(context.Background())
     if err != nil {
         log.Fatal(err)
     }
 
-    toAddress := common.HexToAddress("0xeF145f88397f2E5aa64b56Ec49e67e7Ed2644FC8")
+	transferFnSignature := []byte("transfer(address,uint256)")
+	hash := sha3.NewKeccak256()
+	hash.Write(transferFnSignature)
+	methodID := hash.Sum(nil)[:4]
+	fmt.Println(hexutil.Encode(methodID)) // 0xa9059cbb
+
+	paddedAddress := common.LeftPadBytes(toAddress.Bytes(), 32)
+	fmt.Println(hexutil.Encode(paddedAddress))
+
+	amount := new(big.Int)
+	amount.SetString("1000000000000000000000", 10) // 1000 tokens
+	paddedAmount := common.LeftPadBytes(amount.Bytes(), 32)
+	fmt.Println(hexutil.Encode(paddedAmount))
+
+
     var data []byte
+	data = append(data, methodID...)
+	data = append(data, paddedAddress...)
+	data = append(data, paddedAmount...)
+
+	gasLimit := uint64(21000) // in units
     tx := types.NewTransaction(nonce, toAddress, value, gasLimit, gasPrice, data)
 
 	chainID, err := client.NetworkID(context.Background())
