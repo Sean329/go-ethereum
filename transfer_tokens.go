@@ -86,7 +86,8 @@ func main() {
 		log.Fatal(err)
 	}
 	  
-	fmt.Println(gasLimit) //21644
+	gasLimit *= 2 // Somehow the EstimateGas always underestimate it??
+	fmt.Println(gasLimit) //21644 * 2 = 43288
 
     tx := types.NewTransaction(nonce, tokenAddress, value, gasLimit, gasPrice, data)
 
