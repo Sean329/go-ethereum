@@ -13,7 +13,7 @@ import (
     "github.com/ethereum/go-ethereum/common/hexutil"
     "github.com/ethereum/go-ethereum/core/types"
     "github.com/ethereum/go-ethereum/crypto"
-    "github.com/ethereum/go-ethereum/crypto/sha3"
+    // "github.com/ethereum/go-ethereum/crypto/sha3"
     "github.com/ethereum/go-ethereum/ethclient"
 	"github.com/joho/godotenv"
 )
@@ -59,18 +59,18 @@ func main() {
     }
 
 	transferFnSignature := []byte("transfer(address,uint256)")
-	hash := sha3.NewKeccak256()
-	hash.Write(transferFnSignature)
-	methodID := hash.Sum(nil)[:4]
+	hash := crypto.Keccak256(transferFnSignature)
+	// hash.Write(transferFnSignature)
+	methodID := hash[:4]
 	fmt.Println(hexutil.Encode(methodID)) // 0xa9059cbb
 
 	paddedAddress := common.LeftPadBytes(toAddress.Bytes(), 32)
-	fmt.Println(hexutil.Encode(paddedAddress))
+	fmt.Println(hexutil.Encode(paddedAddress)) // 0x000000000000000000000000ef145f88397f2e5aa64b56ec49e67e7ed2644fc8
 
 	amount := new(big.Int)
 	amount.SetString("1000000000000000000000", 10) // 1000 tokens
 	paddedAmount := common.LeftPadBytes(amount.Bytes(), 32)
-	fmt.Println(hexutil.Encode(paddedAmount))
+	fmt.Println(hexutil.Encode(paddedAmount)) //0x00000000000000000000000000000000000000000000003635c9adc5dea00000
 
 
     var data []byte
@@ -86,7 +86,7 @@ func main() {
 		log.Fatal(err)
 	}
 	  
-	fmt.Println(gasLimit)
+	fmt.Println(gasLimit) //21644
 
     tx := types.NewTransaction(nonce, tokenAddress, value, gasLimit, gasPrice, data)
 
@@ -105,6 +105,6 @@ func main() {
         log.Fatal(err)
     }
 
-    fmt.Printf("tx sent: %s \n", signedTx.Hash().Hex())
+    fmt.Printf("tx sent: %s \n", signedTx.Hash().Hex()) //tx sent: 0x7ed721861e8a255596f07d9fd54844815c1dd5a3717a16adac7e2f786efbd617
 	
 }
