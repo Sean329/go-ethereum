@@ -78,8 +78,17 @@ func main() {
 	data = append(data, paddedAddress...)
 	data = append(data, paddedAmount...)
 
-	gasLimit := uint64(21000) // in units
-    tx := types.NewTransaction(nonce, toAddress, value, gasLimit, gasPrice, data)
+	gasLimit, err := client.EstimateGas(context.Background(), ethereum.CallMsg{
+		To:   &toAddress,
+		Data: data,
+	  })
+	if err != nil {
+		log.Fatal(err)
+	}
+	  
+	fmt.Println(gasLimit)
+
+    tx := types.NewTransaction(nonce, tokenAddress, value, gasLimit, gasPrice, data)
 
 	chainID, err := client.NetworkID(context.Background())
     if err != nil {
