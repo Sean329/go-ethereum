@@ -45,8 +45,8 @@ func main() {
             }
 
             fmt.Println(block.Hash().Hex())        // 
-            fmt.Println(block.Number().Uint64())   // 
-            fmt.Println(block.Time().Uint64())     // 
+            fmt.Println(block.NumberU64())   // 
+            fmt.Println(block.Time())     // 
             fmt.Println(block.Nonce())             // 
             fmt.Println(len(block.Transactions())) // 
         }
