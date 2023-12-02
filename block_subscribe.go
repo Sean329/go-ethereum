@@ -17,9 +17,9 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-    alchemyEthereumMainnetURL:=os.Getenv("ALCHEMY_ETHEREUM_MAINNET_URL")
+    alchemyEthereumMainnetWebsocket:=os.Getenv("ALCHEMY_ETHEREUM_MAINNET_WEBSOCKET")
 
-	client, err := ethclient.Dial(alchemyEthereumMainnetURL)
+	client, err := ethclient.Dial(alchemyEthereumMainnetWebsocket) // Need to use websocket RPC here
     if err != nil {
         log.Fatal(err)
     }
