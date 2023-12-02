@@ -19,7 +19,7 @@ func main() {
 
     alchemyEthereumMainnetWebsocket:=os.Getenv("ALCHEMY_ETHEREUM_MAINNET_WEBSOCKET")
 
-	client, err := ethclient.Dial(alchemyEthereumMainnetWebsocket) // Need to use websocket RPC here
+	client, err := ethclient.Dial(alchemyEthereumMainnetWebsocket) // Need to use websocket RPC here, not https
     if err != nil {
         log.Fatal(err)
     }
