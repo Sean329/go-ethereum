@@ -70,8 +70,15 @@ func main() {
     }
 
     ts := types.Transactions{signedTx}
-    // rawTxBytes := ts.GetRlp(0) //<-- ts.GetRlp undefined
+    // rawTxBytes := ts.GetRlp(0) //<-- ts.GetRlp undefined, removed from package seems like
     rawTxBytes, _ := rlp.EncodeToBytes(ts[0])  
+
+	/*
+		//ALTERNATIVE
+		b := new(bytes.Buffer)
+		ts.EncodeIndex(0, b)
+		rawTxBytes := b.Bytes()
+	*/
 	rawTxHex := hex.EncodeToString(rawTxBytes)
 
     fmt.Printf(rawTxHex) // 
