@@ -81,7 +81,7 @@ func main() {
 	*/
 	rawTxHex := hex.EncodeToString(rawTxBytes)
 
-    fmt.Printf(rawTxHex) // 
+    fmt.Printf("Raw tx created: %s \n", rawTxHex) // 
 
 	rawTxBytesRecover, err := hex.DecodeString(rawTxHex)
 	txRecover := new(types.Transaction)
@@ -92,6 +92,6 @@ func main() {
   		log.Fatal(err)
 	}
 
-	fmt.Printf("tx sent: %s", tx.Hash().Hex())
+	fmt.Printf("tx sent: %s \n", txRecover.Hash().Hex())
 
 }
