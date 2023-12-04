@@ -82,4 +82,16 @@ func main() {
 	rawTxHex := hex.EncodeToString(rawTxBytes)
 
     fmt.Printf(rawTxHex) // 
+
+	rawTxBytesRecover, err := hex.DecodeString(rawTxHex)
+	txRecover := new(types.Transaction)
+	rlp.DecodeBytes(rawTxBytesRecover, &txRecover)
+
+	err = client.SendTransaction(context.Background(), txRecover)
+	if err != nil {
+  		log.Fatal(err)
+	}
+
+	fmt.Printf("tx sent: %s", tx.Hash().Hex())
+
 }
