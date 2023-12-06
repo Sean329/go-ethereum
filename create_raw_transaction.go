@@ -92,6 +92,6 @@ func main() {
   		log.Fatal(err)
 	}
 
-	fmt.Printf("tx sent: %s \n", txRecover.Hash().Hex())
+	fmt.Printf("tx sent: %s \n", txRecover.Hash().Hex()) // let me stay green plz
 
 }
