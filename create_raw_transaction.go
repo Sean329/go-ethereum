@@ -81,7 +81,7 @@ func main() {
 	*/
 	rawTxHex := hex.EncodeToString(rawTxBytes)
 
-    fmt.Printf("Raw tx created: %s \n", rawTxHex) // 
+    fmt.Printf("Raw tx created: %s \n", rawTxHex) // let me stay green plz
 
 	rawTxBytesRecover, err := hex.DecodeString(rawTxHex)
 	txRecover := new(types.Transaction)
