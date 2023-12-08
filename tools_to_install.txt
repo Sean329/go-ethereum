@@ -1,0 +1,19 @@
+Install homebrew:
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+After homebrew is installed, follow the instructions to run the 2 commands below to add the homebrew dir to $PATH
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/XXXXXXXXXXX/.bash_profile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+Brew install Ethereum
+    brew update
+    brew tap ethereum/ethereum
+    brew install solidity
+    brew install ethereum
+
+How to use geth tools to deploy a contract:
+    1. suppose you have a contract in the current dir, it's name is Store.sol
+    2. create an ABI file for it: solc --abi Store.sol -o ./
+    3. create a go package out of the ABI file above: abigen --abi=Store.abi --pkg=store --out=Store.go
+    4. create an EVM bytecode file for it: solc --bin Store.sol -o ./
+    5. create a go package containing both the ABI and the bin file: abigen --bin=Store.bin --abi=Store.abi --pkg=store --out=Store.go
