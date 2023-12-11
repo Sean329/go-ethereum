@@ -32,5 +32,11 @@ func main() {
     }
 
     fmt.Println("contract is loaded")
-    _ = instance
+    
+	version, err := instance.Version(nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println(version) // "1.0"
 }
