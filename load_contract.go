@@ -9,7 +9,7 @@ import (
     "github.com/ethereum/go-ethereum/ethclient"
 	"github.com/joho/godotenv"
 
-    store "github.com/Sean329/go-ethereum/contracts" // for demo
+    store "github.com/Sean329/go-ethereum/contracts" 
 )
 
 func main() {
