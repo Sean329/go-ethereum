@@ -52,7 +52,12 @@ func main() {
         log.Fatal(err)
     }
 
-    auth := bind.NewKeyedTransactor(privateKey)
+    chainID, err := client.NetworkID(context.Background())
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainID)
     auth.Nonce = big.NewInt(int64(nonce))
     auth.Value = big.NewInt(0)     // in wei
     auth.GasLimit = uint64(600000) // in units
