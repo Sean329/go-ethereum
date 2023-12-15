@@ -72,5 +72,5 @@ func main() {
     fmt.Println(address.Hex())   // 
     fmt.Println(tx.Hash().Hex()) // 
 
-    _ = instance
+    _ = instance // for future use
 }
