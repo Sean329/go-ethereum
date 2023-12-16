@@ -31,6 +31,7 @@ func main() {
         log.Fatal(err)
     }
 
+    // Read the contract
     address := common.HexToAddress("0x60193B0F538D02cccA6Ab55F7EbA9d7Cb000C773")
     instance, err := store.NewStore(address, client)
     if err != nil {
@@ -46,6 +47,7 @@ func main() {
 
     fmt.Println(version) // "1.0"
 
+    // Write to the contract
     pk := os.Getenv("WEB3_PRACTICE_PRIVATE_KEY")
     privateKey, err := crypto.HexToECDSA(pk)
 	if err != nil {
