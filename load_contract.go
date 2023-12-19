@@ -15,7 +15,7 @@ import (
     "github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/joho/godotenv"
 
-    store "github.com/Sean329/go-ethereum/contracts" 
+    store "github.com/Sean329/go-ethereum/contracts/contract_store" 
 )
 
 func main() {

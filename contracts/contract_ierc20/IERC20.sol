@@ -77,3 +77,9 @@ interface IERC20 {
      */
     function transferFrom(address from, address to, uint256 value) external returns (bool);
 }
+
+abstract contract IERC20Extented is IERC20 {
+    function decimals() virtual public view returns (uint8);
+    function name() virtual public view returns (string memory);
+    function symbol() virtual public view returns (string memory);
+}
