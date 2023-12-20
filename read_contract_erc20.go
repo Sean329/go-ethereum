@@ -66,6 +66,6 @@ func main() {
 	fbal.SetString(bal.String())
 	value := new(big.Float).Quo(fbal, big.NewFloat(math.Pow10(int(decimals))))
 
-	fmt.Printf("balance: %f\n", value) // "balance: 988899.000000"
+	fmt.Printf("balance: %f\n", value) // 
 
 }
