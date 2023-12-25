@@ -26,7 +26,7 @@ func main() {
         log.Fatal(err)
     }
 
-    contractAddress := common.HexToAddress("0xEe3c6B0346a5aD69137912C6869fCaF88ba03B74") // Mock USDC for Project Seahawk
+    contractAddress := common.HexToAddress("0xEe3c6B0346a5aD69137912C6869fCaF88ba03B74") // Mock USDC for Project Seahawk.
     query := ethereum.FilterQuery{
         Addresses: []common.Address{contractAddress},
     }
