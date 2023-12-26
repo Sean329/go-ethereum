@@ -32,5 +32,18 @@ func main() {
     }
 
     contractAddress := common.HexToAddress("0x60193B0F538D02cccA6Ab55F7EbA9d7Cb000C773") 
+	query := ethereum.FilterQuery{
+		FromBlock: big.NewInt(10181213),
+		ToBlock:   nil, //nil means latest block
+		Addresses: []common.Address{
+		  contractAddress,
+		},
+	  }
+	
+	logs, err := client.FilterLogs(context.Background(), query)
+	if err != nil {
+		log.Fatal(err)
+	}
+	  
     
 }
