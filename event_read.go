@@ -51,6 +51,10 @@ func main() {
 	}
 
 	for _, vLog := range logs {
+		fmt.Println(vLog.BlockHash.Hex()) 
+		fmt.Println(vLog.BlockNumber)     
+		fmt.Println(vLog.TxHash.Hex())
+
 		event := struct {
 		  Key   [32]byte
 		  Value [32]byte
