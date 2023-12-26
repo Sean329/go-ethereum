@@ -45,5 +45,10 @@ func main() {
 		log.Fatal(err)
 	}
 	  
-    
+    contractAbi, err := abi.JSON(strings.NewReader(string(store.StoreABI)))
+	if err != nil {
+  		log.Fatal(err)
+	}
+
+	
 }
