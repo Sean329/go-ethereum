@@ -11,7 +11,7 @@ import (
     "github.com/ethereum/go-ethereum"
     "github.com/ethereum/go-ethereum/accounts/abi"
     "github.com/ethereum/go-ethereum/common"
-    "github.com/ethereum/go-ethereum/crypto"
+    // "github.com/ethereum/go-ethereum/crypto"
     "github.com/ethereum/go-ethereum/ethclient"
 	"github.com/joho/godotenv"
 
@@ -50,5 +50,18 @@ func main() {
   		log.Fatal(err)
 	}
 
-	
+	for _, vLog := range logs {
+		event := struct {
+		  Key   [32]byte
+		  Value [32]byte
+		}{}
+		err := contractAbi.UnpackIntoInterface(&event, "ItemSet", vLog.Data) // Use UnpackIntoInterface instead of Unpack
+		if err != nil {
+		  log.Fatal(err)
+		}
+	  
+		fmt.Println(string(event.Key[:]))   // foo
+		fmt.Println(string(event.Value[:])) // bar
+	  }
+
 }
