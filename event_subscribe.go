@@ -42,7 +42,7 @@ func main() {
         case err := <-sub.Err():
             log.Fatal(err)
         case vLog := <-logs:
-            fmt.Println(vLog) // pointer to event log
+            fmt.Println(vLog) // pointer to event log.
         }
     }
 }
