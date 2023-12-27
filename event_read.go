@@ -11,7 +11,7 @@ import (
     "github.com/ethereum/go-ethereum"
     "github.com/ethereum/go-ethereum/accounts/abi"
     "github.com/ethereum/go-ethereum/common"
-    // "github.com/ethereum/go-ethereum/crypto"
+    "github.com/ethereum/go-ethereum/crypto"
     "github.com/ethereum/go-ethereum/ethclient"
 	"github.com/joho/godotenv"
 
@@ -64,8 +64,19 @@ func main() {
 		  log.Fatal(err)
 		}
 	  
-		fmt.Println(string(event.Key[:]))   // foo
-		fmt.Println(string(event.Value[:])) // bar
+		fmt.Println(string(event.Key[:]))   // 
+		fmt.Println(string(event.Value[:])) //
+		
+		var topics [4]string
+        for i := range vLog.Topics {
+            topics[i] = vLog.Topics[i].Hex()
+        }
+
+        fmt.Println(topics[0])
+
 	  }
 
+	eventSignature := []byte("ItemSet(bytes32,bytes32)")
+	hash := crypto.Keccak256Hash(eventSignature)
+	fmt.Println("The 1st topic is always the signature of the event: "  + hash.Hex())
 }
