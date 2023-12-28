@@ -24,7 +24,7 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	alchemyEthereumGoerliWebSocket:=os.Getenv("ALCHEMY_GOERLI_WEBSOCKET")
+	alchemyEthereumGoerliWebSocket:=os.Getenv("ALCHEMY_GOERLI_WEBSOCKET") // For log reading, use either websocket or regular URL for RPC, both are fine.
 
 	client, err := ethclient.Dial(alchemyEthereumGoerliWebSocket)
     if err != nil {
