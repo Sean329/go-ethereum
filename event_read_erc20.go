@@ -45,5 +45,15 @@ func main() {
         log.Fatal(err)
     }
 
+	// Mock USDC for Project Seahawk token address
+    contractAddress := common.HexToAddress("0xEe3c6B0346a5aD69137912C6869fCaF88ba03B74")
+    query := ethereum.FilterQuery{
+        FromBlock: big.NewInt(10199440), //The block where the contract was deployed
+        ToBlock:   nil,
+        Addresses: []common.Address{
+            contractAddress,
+        },
+    }
+
     
 }
