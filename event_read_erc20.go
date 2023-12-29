@@ -65,5 +65,9 @@ func main() {
   		log.Fatal(err)
 	}
 
+	logTransferSig := []byte("Transfer(address,address,uint256)")
+	logApprovalSig := []byte("Approval(address,address,uint256)")
+	logTransferSigHash := crypto.Keccak256Hash(logTransferSig)
+	logApprovalSigHash := crypto.Keccak256Hash(logApprovalSig)
     
 }
