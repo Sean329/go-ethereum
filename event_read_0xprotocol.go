@@ -61,5 +61,15 @@ func main() {
         log.Fatal(err)
     }
 
+    // 0x Protocol Exchange smart contract address
+    contractAddress := common.HexToAddress("0x12459C951127e0c374FF9105DdA097662A027093")
+    query := ethereum.FilterQuery{
+        FromBlock: big.NewInt(6383482),
+        ToBlock:   big.NewInt(6383488),
+        Addresses: []common.Address{
+            contractAddress,
+        },
+    }
+
 	
 }
