@@ -71,5 +71,14 @@ func main() {
         },
     }
 
+    logs, err := client.FilterLogs(context.Background(), query)
+	if err != nil {
+		log.Fatal(err)
+	}
+	  
+    contractAbi, err := abi.JSON(strings.NewReader(string(exchange.ExchangeABI)))
+	if err != nil {
+  		log.Fatal(err)
+	}
 	
 }
