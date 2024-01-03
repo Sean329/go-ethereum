@@ -55,8 +55,17 @@ func main() {
     addressFromSig := common.HexToAddress(hexutil.Encode(hash.Sum(nil)[12:]))
 
 	matches := (addressToVerify == addressFromSig)
-	fmt.Println(matches)
+	fmt.Println(matches) // true
 
 	// Method 2
+	// ---- Extract the public key in ECDSA type from the signature
+	sigPublicKeyECDSA, err := crypto.SigToPub(dataHash.Bytes(), signature)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+	addressFromSig = crypto.PubkeyToAddress(*sigPublicKeyECDSA)
+    matches = (addressToVerify == addressFromSig)
+	fmt.Println(matches) // true
 
 }
