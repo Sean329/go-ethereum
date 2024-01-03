@@ -4,6 +4,7 @@ import (
     "fmt"
     "log"
 	"os"
+	"crypto/ecdsa"
 
     "github.com/ethereum/go-ethereum/common/hexutil"
     "github.com/ethereum/go-ethereum/crypto"
@@ -26,7 +27,15 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-	
+
+	publicKey := privateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+        log.Fatal("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
+    }
+
+	publicKeyBytes := crypto.FromECDSAPub(publicKeyECDSA)
+
     data := []byte("hello")
     dataHash := crypto.Keccak256Hash(data)
     fmt.Println(dataHash.Hex()) // 0x1c8aff950685c2ed4bc3174f3472287b56d9517b9c948127319a09a7a36deac8
@@ -67,5 +76,10 @@ func main() {
 	addressFromSig = crypto.PubkeyToAddress(*sigPublicKeyECDSA)
     matches = (addressToVerify == addressFromSig)
 	fmt.Println(matches) // true
+
+	// If you already know the public key bytes to verify, then there is a method to directly compare the public key
+    signatureNoRecoverID := signature[:len(signature)-1] // remove recovery id which is the last byte of the signature
+    verified := crypto.VerifySignature(publicKeyBytes, dataHash.Bytes(), signatureNoRecoverID)
+    fmt.Println(verified) // true
 
 }
