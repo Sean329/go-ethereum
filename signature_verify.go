@@ -77,6 +77,7 @@ func main() {
     matches = (addressToVerify == addressFromSig)
 	fmt.Println(matches) // true
 
+	// Method 3
 	// If you already know the public key bytes to verify, then there is a method to directly compare the public key
     signatureNoRecoverID := signature[:len(signature)-1] // remove recovery id which is the last byte of the signature
     verified := crypto.VerifySignature(publicKeyBytes, dataHash.Bytes(), signatureNoRecoverID)
