@@ -54,7 +54,13 @@ func main() {
     }
 
     toAddress := common.HexToAddress("0xeF145f88397f2E5aa64b56Ec49e67e7Ed2644FC8")
-    var data []byte
+
+    /*var data []byte*/ // Empty data, or use below lines for some real data:
+	
+    str := "hello"
+    data := []byte(str) // data is now an arbitrary string
+
+    
     tx := types.NewTransaction(nonce, toAddress, value, gasLimit, gasPrice, data)
 
 	chainID, err := client.NetworkID(context.Background())
